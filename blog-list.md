@@ -1,5 +1,3 @@
 ## 現在のブログリスト
-<blog1.html>
-blog1.html
-
-<blog2.html>
+[PWAでいろいろつくった話](https://halblog.f5.si/blog1.html)
+[地震情報の情報源一覧](https://halblog.f5.si/blog2.html)
