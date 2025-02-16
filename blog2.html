@@ -1,56 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="First blog post">
-    <title>Blog Post - My Blog</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HalBLOG - ブログ投稿タイトル 1</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .post-header {
+      background: url('https://source.unsplash.com/1600x400/?city,night') no-repeat center center;
+      background-size: cover;
+      color: #fff;
+      padding: 100px 0;
+      position: relative;
+    }
+    .post-header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .post-title {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog-list.md">Blog</a></li>
-                <li><a href="comingsoon.html">coming soon...</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <article>
-            <h1>地震情報を取得する情報源（無料）</h1>
-            <p>Published on: February 4, 2025</p>
-            <p>ブログを一新した関係で、cssが吹っ飛んでしまいました。見にくいですが追々修正します。</p>
-            <h2>地震情報APIって…？？</h2><p></p><p>地震情報のAPIはアプリ開発、ボット開発において必ず(といっていいほど)皆が探すものです。もちろん私もネット上を<u>嫌と言うほど</u>探し回りました。できればここを見ている皆さんのために、情報源を書いていきたいと思います。それでは見ていきましょう！<p></p>
-          <h2>P2P地震情報API</h2>
-          <p></p><p>こちらは知っている方も多いのではないでしょうか。わたしも現在使っています。なんといってもwebsocketに対応している点がものすごく嬉しいです。実際、開発してみるとwebsocketのありがたみがよく分かります。ちなみにjson型式で取得できるのも嬉しい点。
-          </p><p></p><p>https://www.p2pquake.net/develop/json_api_v2/#/</p>
-          <p></p><h2>AXIS</h2>
-          <p></p><p>こちらの情報源は、地震情報のみならず気象情報などのwebsocket通信が行えます。<u>GET方式が使えないのは注意。</u><p>こちらも低遅延で情報を取得できますが、</p>
-            <blockquote><p>現在、AXISはベータテスト版のサービスです。予期せぬサービス停止、配信メッセージの遅延が発生する可能性があります。
-購読したメッセージは私的範囲内あるいは実験・研究目的でのみ利用可能です。再配信、転載、複製、改変、商用利用は禁止です。
-また、複数アカウントを作成して最大同時接続数を超える接続を行うことはご遠慮ください。(最大同時接続数の緩和を希望される場合はお問い合わせください)</p></blockquote>
-            <p>との注意書きがあることには注意。</p>
-          <p></p>
-            <div class="ninja_onebutton">
-<script type="text/javascript">
-//<![CDATA[
-(function(d){
-if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_205e0c699cf6e4eadb099f9890595794)=='undefined'){
-    document.write("<sc"+"ript type='text\/javascript' src='\/\/omt.shinobi.jp\/b\/205e0c699cf6e4eadb099f9890595794'><\/sc"+"ript>");
-}else{
-    window.NINJA_CO_JP_ONETAG_BUTTON_205e0c699cf6e4eadb099f9890595794.ONETAGButton_Load();}
-})(document);
-//]]>
-</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
-</div>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">HalBLOG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">ホーム</a></li>
+          <li class="nav-item"><a class="nav-link" href="list.html">ブログ一覧</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">作成者について</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-            <a href="https://adf.shinobi.jp/r/dee36c23e94aebf9184d173e06528e00"><img src="https://v2st.shinobi.jp/admax/friends/banner/admax/friends_manga_46860.png"></a>
-        </article>
-    </main>
-    <footer>
-        <p>&copy; 2025 My Blog. All rights reserved.</p>
-    </footer>
+  <!-- ブログヘッダー -->
+  <header class="post-header mt-5">
+    <div class="container text-center">
+      <h1 class="display-4 post-title">ブログ投稿タイトル 1</h1>
+      <p class="lead post-title">2025/02/05</p>
+    </div>
+  </header>
+
+  <!-- ブログ本文 -->
+  <main class="container my-5">
+    <article>
+      <h1>地震情報を取得する情報源（無料）</h1>
+    <p><strong>Published on:</strong> February 4, 2025</p>
+    <p>ブログを一新した関係で、CSSが吹っ飛んでしまいました。見にくいですが、追々修正します。</p>
+    
+    <h2>地震情報APIって…？？</h2>
+    <p>地震情報のAPIはアプリ開発やボット開発において、ほぼ必ず探されるものです。私もネット上を探し回りました。<br>
+    そこで、ここを見ている皆さんのために、無料で使える地震情報のAPIを紹介していきます！</p>
+    
+    <h2>P2P地震情報API</h2>
+    <p>こちらは知っている方も多いのではないでしょうか。私も現在利用しています。</p>
+    <p>特に <strong>WebSocket に対応している</strong> のが大きなメリットです。開発してみると WebSocket の便利さがよく分かります。また、<strong>JSON 形式で取得可能</strong>なのも嬉しいポイントです。</p>
+    <p><a href="https://www.p2pquake.net/develop/json_api_v2/#/" target="_blank">P2P地震情報APIの詳細はこちら</a></p>
+    
+    <h2>AXIS</h2>
+    <p>こちらの情報源は、地震情報のみならず気象情報の WebSocket 通信も可能です。ただし、<strong>GET 方式が使えない</strong> 点には注意が必要です。</p>
+    <p>低遅延で情報を取得できますが、現在は <strong>ベータテスト版</strong> であり、以下の注意点があります。</p>
+    
+    <div class="note">
+        <p>現在、AXISはベータテスト版のサービスです。予期せぬサービス停止、配信メッセージの遅延が発生する可能性があります。</p>
+        <p>購読したメッセージは私的範囲内あるいは実験・研究目的でのみ利用可能です。再配信、転載、複製、改変、商用利用は禁止されています。</p>
+        <p>また、複数アカウントを作成して最大同時接続数を超える接続を行うことはご遠慮ください。（最大同時接続数の緩和を希望される場合はお問い合わせください）</p>
+    </article>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 HalBLOG. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
