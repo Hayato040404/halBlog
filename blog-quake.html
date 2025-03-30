@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HalBLOG - ブログ投稿タイトル 1</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .post-header {
+      background: url('https://source.unsplash.com/1600x400/?city,night') no-repeat center center;
+      background-size: cover;
+      color: #fff;
+      padding: 100px 0;
+      position: relative;
+    }
+    .post-header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .post-title {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">HalBLOG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">ホーム</a></li>
+          <li class="nav-item"><a class="nav-link" href="list.html">ブログ一覧</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">作成者について</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ブログヘッダー -->
+  <header class="post-header mt-5">
+    <div class="container text-center">
+      <h2 class="display-4 post-title"> 海外での巨大地震。私達ができること。</h2>
+      <p class="lead post-title">2025/03/30</p>
+    </div>
+  </header>
+
+  <!-- ブログ本文 -->
+  <main class="container my-5">
+    <article>
+      <h2>ミャンマーでの地震の被害は？</h2>
+      <p> </p>
+      <p>最近、やたらに海外の地震がおおいなと思っていたのですが、ミャンマーでの地震が原因っぽそうです。</p><p></p><p>ミャンマーでの地震が起きたのは3/28日の午後です。気象庁が発表した情報によりますと、
+      マグニチュードは7.7というほぼ首都直下で大きい地震があったということです。</p><p></p>また、死者は1700人以上で、当時Xにはマンションの屋上のプールから水が揺れで地上に落ちてくる（語彙力）という動画も出回りました。
+      地震発生当時、強震モニタを見てみたところ日本にも地震の揺れが届いていました（観測点が黄色だった）。また、改正メルカリ震度階級でIXほどで、日本の震度に比較すると6弱〜6強という揺れだったそうです。
+      </p> <p> </p><p></p>
+      <h2>どんな仕組み（感じ）で地震が起こった？</h2>
+     <p></p>
+    <p>　NHKの記事を参考にしますと、断層の破壊が７０ｓほど続き、非常に大きな破壊力を持った地震波ができてしまったということです。これの影響でタイのバンコクでも被害が出てしまったようです。。。</p><p></p><p></p>
+    <h2>私達ができること</h2>
+    <p></p>
+    <p>まず私達ができることは日頃から防災意識を持つことでしょう。防災意識を持つことで 避難グッズを揃えたり、避難経路を確認したり、などができるからです。まずは日頃から防災意識を持つことが大事だと思います。</p><p></p>
+    <p></p><h2>まとめ</h2>
+    
+      <p></p>
+    <p>・ミャンマーの地震は、断層の破壊が長く続いた影響で強い地震となったため様々な場所で被害が出た。<p></p>
+    <p>・私達が気をつけることは日頃から防災意識を持つ事がまず重要。<p>
+    
+    </article>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 HalBLOG. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
