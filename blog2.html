@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="地震情報APIまとめ！開発者が一度は直面するAPIの種類についてまとめてみました。有料・無料で区切っています。ぜひ御覧ください。">
+  <meta name="keywords" content="地震情報API,地震,API,地震情報,Hal,ブログ,無料,有料">
+
+  <meta property="og:title" content="HalBLOG - 地震情報APIまとめ">
   <title>HalBLOG - 地震情報APIまとめ</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -54,14 +59,14 @@
   <header class="post-header mt-5">
     <div class="container text-center">
       <h1 class="display-4 post-title">地震情報APIまとめ</h1>
-      <p class="lead post-title">2025/02/05</p>
+      <p class="lead post-title">2025/02/05　更新：2025/5/10</p>
     </div>
   </header>
 
   <!-- ブログ本文 -->
   <main class="container my-5">
     <article>
-      <h1>地震情報を取得する情報源（無料）</h1>
+      <h1>地震情報を取得する情報源</h1>
     <p><strong>Published on:</strong> February 4, 2025</p>
     <p>ブログを一新した関係で、CSSが吹っ飛んでしまいました。見にくいですが、追々修正します。</p><p></p>
       <p>追記　修正済み</p>
@@ -70,21 +75,45 @@
     <p>地震情報のAPIはアプリ開発やボット開発において、ほぼ必ず探されるものです。私もネット上を探し回りました。<br>
     そこで、ここを見ている皆さんのために、無料で使える地震情報のAPIを紹介していきます！</p>
     
-    <h2>P2P地震情報API</h2>
+    <h2>P2P地震情報API (無料)</h2>
     <p>こちらは知っている方も多いのではないでしょうか。私も現在利用しています。</p>
     <p>特に <strong>WebSocket に対応している</strong> のが大きなメリットです。開発してみると WebSocket の便利さがよく分かります。また、<strong>JSON 形式で取得可能</strong>なのも嬉しいポイントです。</p>
     <p><a href="https://www.p2pquake.net/develop/json_api_v2/#/" target="_blank">P2P地震情報APIの詳細はこちら</a></p>
     
-    <h2>AXIS</h2>
+    <h2>AXIS(無料　制限あり)</h2>
     <p>こちらの情報源は、地震情報のみならず気象情報の WebSocket 通信も可能です。ただし、<strong>GET 方式が使えない</strong> 点には注意が必要です。</p>
     <p>低遅延で情報を取得できますが、現在は <strong>ベータテスト版</strong> であり、以下の注意点があります。</p>
     
     <div class="note">
         <p>現在、AXISはベータテスト版のサービスです。予期せぬサービス停止、配信メッセージの遅延が発生する可能性があります。</p>
         <p>購読したメッセージは私的範囲内あるいは実験・研究目的でのみ利用可能です。再配信、転載、複製、改変、商用利用は禁止されています。</p>
-        <p>また、複数アカウントを作成して最大同時接続数を超える接続を行うことはご遠慮ください。（最大同時接続数の緩和を希望される場合はお問い合わせください）</p>
+        <p>また、複数アカウントを作成して最大同時接続数を超える接続を行うことはご遠慮ください。（最大同時接続数の緩和を希望される場合はお問い合わせください）</p></div>
+      <p><a href="https://axis.prioris.jp/" target="_blank">AXISの詳細はこちら</a></p>
+   <h2>Wolfx防災API(無料)</h2>
+   <p>こちらは色んな情報に対応している意外と有名なものです。対応情報は、日本の緊急地震速報、地震情報、中国の地震情報などなど様々です。<strong>無料で使えるというところが素晴らしい</strong>のでぜひ使ってみてください。</p>
+      <p>最近まで中国語だったものの、日本語対応してました！！ありがたい。</p>
+      <p><a href="https://wolfx.jp/apidoc?nodetect" target="_blank">Wolfx防災の詳細はこちら</a></p>
+      
+  <h2>DMDATA(有料)</h2>
+      <p>こちらは、そうしさんが運営をしている気象庁が発表した情報のほぼすべてが入手できるAPIです。<strong>有料ですが、使う価値は絶対ある</strong>と思います。（私は未使用です、、、）</p>
+      <blockquote class="blockquote">
+        <p class="mb-0">このサービスはもっと「手軽に生の情報を素早く得たい」、という運営者の思いによって2020年04月に正式誕生しました。</p><p></p><p>
+
+
+WebSocketを通じて、気象庁（気象業務支援センター）の配信する"地震情報"や"津波情報"、
+"気象警報"等を気象庁防災情報XMLで提供されている形式で配信する API を提供しています。
+</p><p></p><p>
+
+WebSocketを利用することで速報性のある緊急地震速報や、震度速報、津波警報、特別警報などを即座に配信できます。
+</p><p></p><p>
+このサービスを通して得た情報（気象庁発表の電文に限る）は無償・商用問わず二次利用が可能です（一部を除く。）。
+</p><p></p><p>
+気象業務支援センター（気象庁構内）の東京・大阪から常時リアルタイム配信を受けており、地理冗長の常時二系統運用を行っています。</p>
+        <footer class="blockquote-footer">https://dmdata.jp/ より</footer>
+      </blockquote>
+    <p><a href="https://dmdata.jp/" target="_blank">Dmdataの詳細はこちら</a></p>
     </article>
-  </main>
+    </main>
 
   <!-- フッター -->
   <footer class="bg-dark text-white text-center py-3">
