@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HalBLOG - 「揺れ検知」システムを作ってみた</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .post-header {
+      background: url('https://source.unsplash.com/1600x400/?earthquake,technology') no-repeat center center;
+      background-size: cover;
+      color: #fff;
+      padding: 100px 0;
+      position: relative;
+    }
+    .post-header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .post-title {
+      position: relative;
+      z-index: 2;
+    }
+    .table-custom {
+      margin: 2rem 0;
+    }
+    .detection-image {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      margin: 2rem 0;
+    }
+    
+    /* タイポグラフィ改善 */
+    article {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+    
+    article h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 4rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid #0d6efd;
+    }
+    
+    article h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      color: #0d6efd;
+    }
+    
+    article h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #495057;
+    }
+    
+    article p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .section-intro {
+      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border-left: 4px solid #0d6efd;
+      margin-bottom: 2rem;
+      border-radius: 4px;
+    }
+    
+    .highlight-box {
+      background-color: #e7f3ff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    
+    .point-list {
+      background-color: #fff;
+      padding: 1.5rem;
+      border: 2px solid #dee2e6;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    
+    .point-list ul {
+      margin-bottom: 0;
+    }
+    
+    .point-list li {
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">HalBLOG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">ホーム</a></li>
+          <li class="nav-item"><a class="nav-link" href="list.html">ブログ一覧</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">作成者について</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- ブログヘッダー -->
+  <header class="post-header mt-5">
+    <div class="container text-center">
+      <h1 class="display-4 post-title">「揺れ検知」システムを作ってみた</h1>
+      <p class="lead post-title">2025/12/16 - 防災アプリ開発AdventCalendar2025</p>
+    </div>
+  </header>
+  <!-- ブログ本文 -->
+  <main class="container my-5">
+    <article>
+      <p class="lead"> この記事は<a href="https://adventar.org/calendars/11308">「<strong>防災アプリ開発AdventCalendar2025</strong>」</a>の16日目の投稿です。</p>
+      
+      <h2>自己紹介</h2>
+      
+        <p>はじめまして、<strong>Hal（haやと）</strong>と申します。私は個人で防災に関するWebアプリを開発している者です。使用できる言語はC#、HTML、Javascriptなど、主にWeb技術を中心に扱っています。</p>
+      
+      
+      <h3>開発のきっかけ</h3>
+      <p>PCがLinuxなのでそれでも使える強震モニタアプリが作りたい思い、作成したのですが揺れ検知機能も付け加えをしたかったので開発をしました。</p>
+      
+      <h3>本記事について</h3>
+      <p>この記事では、強震モニタのデータから揺れを自動的に検知する<strong>「揺れ検知システム」</strong>の開発について、その仕組みやアルゴリズムを詳しく解説していきます。</p>
+      
+      <h2>揺れ検知システムの構想</h2>
+      
+      <h3>なぜ揺れ検知システム？？</h3>
+      <p>最近では多くの地震アプリに強震モニタの表示機能と揺れ検知システムが搭載されていることが多いですよね。リアルタイムで日本全国の揺れの状況を可視化できる強震モニタは、欠かせないものとなっており、それを作成するならば揺れ検知機能も当然実装したくなる機能です。</p>
+      
+      <h3>誤検知の防ぎ方</h3>
+      <p>しかし、単純に観測点の震度値の変化を監視するだけでは、ノイズや一時的な異常値によって誤検知が頻発してしまいます。これでは意味がありません。そこで今回採用したのが、<strong>グリッドベースの検知手法</strong>です。</p>
+      
+      <h3>グリッド方式のメリット</h3>
+      <p>具体的には、膨大な数の観測点データを<strong>50km四方のグリッドに分割</strong>し、各グリッド単位で検知処理を行います。</p>
+      <p>メリットは2つほどあります。グリッド内のデータを処理するだけですのでプログラムが比較的簡単になることと、誤検知を大幅に減らすことができます。一つの観測点だけが異常な値を示しても、グリッド内で処理をするため判別が簡単です。</p>
+      
+      
+      <h2>検知アルゴリズムの詳細</h2>
+      
+      <p>それでは、実際の検知アルゴリズムについて書いていきます。このシステムの基本的な部分は、各グリッドの<strong>「データ履歴」</strong>を活用した震度変化の検出にあります。</p>
+      
+      
+      <p>各グリッドは、リアルタイムで以下の情報を保持・更新しています。</p>
+      
+      <table class="table table-bordered table-custom">
+        <thead class="table-dark">
+          <tr>
+            <th>Javascriptのクラス</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>history</code></td>
+            <td>直近の4秒間のグリッド内最大震度値の履歴</td>
+          </tr>
+          <tr>
+            <td><code>currentMaxVal</code></td>
+            <td>現在のグリッド内の最大震度値</td>
+          </tr>
+        </tbody>
+      </table>
+      
+     
+      <p>また、現在の値と、過去の値の最小値との差が一定以上であり、かつ現在の最大震度値が震度1以上に達していると判断した場合、そのグリッドは<code>isTriggered=true</code>の状態になります。</p>
+      
+     
+      
+      <h3>グリッドの検証</h3>
+      <p>上記の判定だけでも一定の検知は可能ですが、さらにノイズを削減し精度を高めるため、追加の段階を踏んで実装しています。（誤検知防止は大事！）</p>
+      <p>少し解説してきましたが、いままで得られた判定はあくまでも<strong>「一つのグリッドが急に揺れた」</strong>ということを検知しただけということです。実際の地震は波として伝播し、揺れていくものです。なので、本当に地震が発生している場合、そのグリッドだけでなく隣接する複数のグリッドでも同時に検知されるはずですよね。</p>
+      <p>この原理に基づき、以下のような処理を追加しました。</p>
+      <blockquote class="blockquote border-start border-4 border-primary ps-3 my-4">
+        <p class="mb-0">あるグリッドにて揺れが検知された場合、その周囲にある<strong>8つのグリッド</strong>のうち、事前に設定した値（現在は<strong>2グリッド</strong>）以上が同様に反応しているかを確認します。この条件を満たした場合、そのグリッドを「検証済み」として扱い、実際の地震による揺れであると判定します。</p>
+      </blockquote>
+      
+      <p>逆に、周囲のグリッドが反応していない場合、それは観測点の一時的なノイズや異常値である可能性が高いため破棄されます。これにより、誤検知を大幅に削減できます。</p>
+      <p>ただし、例外的なケースとして、揺れの強さが明らかに有感地震レベル（おおよそ<strong>震度2〜3以上</strong>）に達している場合は、周囲の状況に関わらず即座に「検証済み」とします。</p>
+      
+      <h2>実際の検知例</h2>
+      <h3>2025年11月25日 熊本県阿蘇地方の地震</h3>
+      <p>実際のシステム動作例として、<strong>2025年11月25日18時01分に発生した熊本県阿蘋地方を震源とする震度5強の地震</strong>での検知の様子をご覧ください。</p>
+      <div class="text-center">
+        <img src="exampleurl" alt="地震検知の様子" class="detection-image">
+        <p class="text-muted"><small>検知システムが地震波の伝播を捉えている様子</small></p>
+      </div>
+      <p>このように、震源付近から徐々にグリッドが反応していく様子が確認でき、システムが正常に機能していることが分かります。</p>
+      
+      <h2>まとめと今後の展望</h2>
+      
+      <h3>開発の振り返り</h3>
+      <p>今回の開発では、単なる地震情報の表示アプリではなく、<strong>地震の揺れをリアルタイムで検知する</strong>という機能に特化したシステムの構築を目指しました。</p>
+      <p>今回開発するにあたって、誤検知を減らすことを第一に考えていましたが、なかなかアイデアが出ず、Geminiに頼ったところ「グリッドの検証」というあんが出てきました。やはりAIはすごいですね。</p>
+    
+      <h3>フィードバックのお願い</h3>
+      <p>もしこの記事をお読みになって、アイデアやご意見、改善点などがございましたら、ぜひ私のTwitterアカウントまでお気軽にご連絡ください。</p>
+      <a href="https://x.com/hayatozusi">アカウント</a>
+      
+      <div class="text-center mt-5 mb-4">
+        <p class="lead"><strong>最後までお読みいただき、誠にありがとうございました。</strong></p>
+      </div>
+    </article>
+  </main>
+  <!-- フッター -->
+  <footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 HalBLOG. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
